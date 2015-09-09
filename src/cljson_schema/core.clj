@@ -23,23 +23,25 @@
 (defmethod validator* clojure.lang.APersistentMap [factory schema opts]
   (validator* factory (json/generate-string schema) opts))
 
-(defn validator [schema {:keys [namespace] :as opts}]
-  (let [uri-translator
-        (cond-> (URITranslatorConfiguration/newBuilder)
-          namespace (.setNamespace namespace)
-          true (.freeze))
+(defn validator
+  ([schema] (validator schema {}))
+  ([schema {:keys [namespace] :as opts}]
+   (let [uri-translator
+         (cond-> (URITranslatorConfiguration/newBuilder)
+           namespace (.setNamespace namespace)
+           true (.freeze))
 
-        loading-configuration
-        (cond-> (LoadingConfiguration/newBuilder)
-          namespace (.setURITranslatorConfiguration uri-translator)
-          true (.freeze))
+         loading-configuration
+         (cond-> (LoadingConfiguration/newBuilder)
+           namespace (.setURITranslatorConfiguration uri-translator)
+           true (.freeze))
 
-        factory
-        (-> (JsonSchemaFactory/newBuilder)
-            (.setLoadingConfiguration loading-configuration)
-            (.freeze))]
+         factory
+         (-> (JsonSchemaFactory/newBuilder)
+             (.setLoadingConfiguration loading-configuration)
+             (.freeze))]
 
-    (validator* factory schema opts)))
+     (validator* factory schema opts))))
 
 (defmulti validate* (fn [_ obj] (class obj)))
 
