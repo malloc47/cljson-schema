@@ -1,4 +1,4 @@
-(defproject cljson-schema "0.1.0-SNAPSHOT"
+(defproject com.malloc47/cljson-schema "0.1.0-SNAPSHOT"
   :description "JSON Schema support for Clojure"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
