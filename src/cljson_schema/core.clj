@@ -44,7 +44,7 @@
 (defmulti validate* (fn [_ obj] (class obj)))
 
 (defmethod validate* clojure.lang.APersistentMap [validator obj]
-  (validate* (json/generate-string obj)))
+  (validate* validator (json/generate-string obj)))
 
 (defmethod validate* String [validator obj]
   (.validate ^JsonSchema validator ^JsonNode (JsonLoader/fromString obj)))
