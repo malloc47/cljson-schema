@@ -1,6 +1,6 @@
-(defproject com.malloc47/cljson-schema "0.1.0-SNAPSHOT"
+(defproject com.malloc47/cljson-schema "0.1.0"
   :description "JSON Schema support for Clojure"
-  :url "http://example.com/FIXME"
+  :url "https://github.com/malloc47/cljson-schema"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
